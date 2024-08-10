@@ -18,6 +18,7 @@ You can install the required Python packages using `pip`:
 
 ```bash
 pip install requests python-telegram-bot
+pip install imageio moviepy pillow imageio[ffmpeg] imageio[pyav]
 ```
 
 ## Usage
@@ -64,6 +65,7 @@ If your bot token is `5640863500:AAGgnofomUMC1zn9c8CmW5CnfJQhBtX7LUk` and the st
 
 ```bash
 pip install requests python-telegram-bot
+pip install imageio moviepy pillow imageio[ffmpeg] imageio[pyav]
 ```
 
 ## 使用方法
