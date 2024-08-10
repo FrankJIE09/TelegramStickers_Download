@@ -1,5 +1,6 @@
 import os
 import imageio
+from tqdm import tqdm
 
 
 def convert_webp_to_gif(input_path, output_path, total_duration=2.0):
@@ -22,18 +23,20 @@ def convert_folder_webps_to_gifs(input_folder, output_folder, total_duration=2.0
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
-    for filename in os.listdir(input_folder):
-        if filename.endswith('.webp'):
-            input_path = os.path.join(input_folder, filename)
-            output_filename = filename.replace('.webp', '.gif')
-            output_path = os.path.join(output_folder, output_filename)
-            convert_webp_to_gif(input_path, output_path, total_duration)
+    webp_files = [f for f in os.listdir(input_folder) if f.endswith('.webp')]
+
+    for filename in tqdm(webp_files, desc="Converting WEBP to GIF"):
+        input_path = os.path.join(input_folder, filename)
+        output_filename = filename.replace('.webp', '.gif')
+        output_path = os.path.join(output_folder, output_filename)
+        convert_webp_to_gif(input_path, output_path, total_duration)
 
     print(f"All .webp files have been converted and saved to {output_folder}.")
 
 
-# 使用示例
-input_folder = 'niubiuniu_by_WuMingv2Bot'
-output_folder = 'niubiuniu_by_WuMingv2Bot_gifs'
+if __name__ == "__main__":
+    sticker_name = 'niubiuniu_by_WuMingv2Bot'  # 替换为实际的 sticker 名称
+    input_folder = f'{sticker_name}'
+    output_folder = f'{sticker_name}_gifs'
+    convert_folder_webps_to_gifs(input_folder, output_folder)
 
-convert_folder_webps_to_gifs(input_folder, output_folder, total_duration=2.0)
